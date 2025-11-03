@@ -120,6 +120,7 @@ lz_compress:
         uint8_t match_length = 0;
         uint32_t match_offset = 0;
         for (int l = 0; l < MATCH_LEVEL; l++) {
+#pragma HLS UNROLL
             uint8_t len = 0;
             bool done = 0;
             uintDict_t compareWith = dictReadValue.range((l + 1) * c_dictEleWidth - 1, l * c_dictEleWidth);
@@ -313,6 +314,7 @@ void lzCompress(hls::stream<IntVectorStream_dt<8, 1> >& inStream, hls::stream<In
             uint8_t match_length = 0;
             uint32_t match_offset = 0;
             for (int l = 0; l < MATCH_LEVEL; l++) {
+#pragma HLS UNROLL
                 uint8_t len = 0;
                 bool done = 0;
                 uintDict_t compareWith = dictReadValue.range((l + 1) * c_dictEleWidth - 1, l * c_dictEleWidth);

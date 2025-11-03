@@ -22,11 +22,10 @@
 #ifndef _XF_SOLVER_L1_HPP_
 #define _XF_SOLVER_L1_HPP_
 
+#include "hw/cholesky.hpp"
 #include "hw/pseudosqrt.hpp"
 #include "hw/qrf.hpp"
 #include "hw/qr_inverse.hpp"
 #include "hw/svd.hpp"
 #include "hw/cholesky_inverse.hpp"
-#include "hw/cholesky.hpp"
-
 #endif

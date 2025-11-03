@@ -40,6 +40,7 @@
 namespace xf {
 namespace compression {
 
+// FIX: Added missing typedef
 typedef ap_uint<32> compressd_dt;
 
 static void lz77Divide(hls::stream<compressd_dt>& inStream,
@@ -338,6 +339,7 @@ lz_bestMatchFilter:
         bool best_match = 1;
         // Find Best match
         for (uint32_t j = 0; j < c_max_match_length; j++) {
+#pragma HLS UNROLL
             compressd_dt compareValue = compare_window[j];
             uint8_t compareLen = compareValue.range(15, 8);
             if (match_length + j < compareLen) {
@@ -560,7 +562,7 @@ void lzBooster(hls::stream<compressd_dt>& inStream, hls::stream<compressd_dt>& o
     uint8_t local_mem[BOOSTER_OFFSET_WINDOW];
     uint32_t match_loc = 0;
     uint32_t match_len = 0;
-    compressd_dt outValue;
+    compressd_dt outValue = 0; // FIX: Initialize outValue
     compressd_dt outStreamValue;
     bool matchFlag = false;
     bool outFlag = false;
